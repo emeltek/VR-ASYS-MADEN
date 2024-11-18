@@ -10,10 +10,14 @@ public class DropRocks : MonoBehaviour
     private bool rocksActivated = false;
     [SerializeField] private GameObject effect;
 
-    void Start()
+     void Awake()
     {
         rocksParent.SetActive(false);
-            effect.GetComponent<ParticleSystem>().Stop();
+    }
+    void Start()
+    {
+       
+        effect.GetComponent<ParticleSystem>().Stop();
 
         StartCoroutine(PlayEffectWithDelay());
     }
