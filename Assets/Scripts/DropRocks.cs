@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
+using TriangleNet;
 using UnityEngine;
 
 public class DropRocks : MonoBehaviour
@@ -9,6 +11,10 @@ public class DropRocks : MonoBehaviour
     [SerializeField] private GameObject rocksParent; 
     private bool rocksActivated = false;
     [SerializeField] private GameObject effect;
+    private bool isActive = false;
+    private  ParticleSystem.ShapeModule shape;
+    private float sayac = 0;
+    private ParticleSystem partilceSystem;
 
      void Awake()
     {
@@ -20,25 +26,45 @@ public class DropRocks : MonoBehaviour
         effect.GetComponent<ParticleSystem>().Stop();
 
         StartCoroutine(PlayEffectWithDelay());
+        partilceSystem = effect.GetComponent<ParticleSystem>();
+
+        shape = partilceSystem.shape;
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        sayac += Time.deltaTime;
+        
+        if (isActive == true)
+        {
+            shape.scale = new Vector3(sayac*2, shape.scale.y, shape.scale.z);
+        }
+
+        if (sayac >= 20)
+        {
+            partilceSystem.Stop();
+            isActive = false;
+        }
+        
     }
 
-    void FallandPlay()
+    void  FallandPlay()
     {
         if (groundShake.isShaking && !rocksActivated)
         {
 
-            Debug.Log("method çalıştı.");
             rocksParent.SetActive(true);
             rocksActivated = true;
             StartCoroutine(PlayEffectWithDelay());
-            effect.GetComponent<ParticleSystem>().Play();
+            
+            var particle = effect.GetComponent<ParticleSystem>();
+            particle.Play();
+            Debug.Log(particle.shape.scale.x);       
+            isActive = true;
+
         }
+       
     }
 
     IEnumerator PlayEffectWithDelay()
