@@ -1,0 +1,249 @@
+fileFormatVersion: 2
+guid: 8628300640e38d8419b80937545051d3
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bench_end_left_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 1bb1c3e5eba1c984ebf4a3c055c56ffb, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bench_end_right_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 3dfad28b5371e8e47b356f3a105f7dce, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bench_mid_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 1d428477d8fb2d246bcc63e7249c21ad, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: board_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 56750c8ed6aca2244909a4d78428f3e4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: door_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: e362391c3dfc2e647a979887d805e2de, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: first_aid_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 359d212427a1e76429d56b51801a1d7a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: floor_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 8405bb864caf9674ba9f8d7c47932b0b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: high_vis.001_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 9c18e7d3f8a830448b606f4a1eb47100, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: high_vis.002_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 40126ecb5f352c7469d2a9daee11baca, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: high_vis.003_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 2c70a433491829b4d86627ee54fa42bc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: high_vis.004_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 8113ac73e15b1a942b4c86e872801c96, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: high_vis.005_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: ab2fefa6193411541aeac0773b2495df, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: high_vis.006_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: cec6b06b9b8f2424a982a17ebcaf3a39, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: high_vis.007_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: a51ea39790c656342bff00488e04d3a6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: high_vis.008_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 07d661ba74d4f1845aa0e69b5b0417f2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: high_vis.009_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 03b660fc870f4774a9bf607dc4f7e48c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: high_vis.010_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 7de80f222d4d0d3488984df6581c3eb1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: high_vis.011_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: e36c9f09b0980904d8db772ced410e50, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: lights_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 07144b633f6dcba46a88f954ef68274a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: locker_end_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: e86efe55c74205b4c918cf8e61f3c483, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: locker_mid_left_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 62d562eae2f72e440bcef1f29781ad65, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: locker_mid_right_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 7cf566bbcb5934e4d94b228e56b91fd9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: rail_front_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 922f4232068f5364fbb2af492992dbf7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: rail_left_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 5a5c01e66171f684d9fd4e1c4a99fdc2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: rail_right_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 2dea029c5b643f74e8597b458e139c5f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: roof_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 7b3fa9e0856af5543b37ab91755c6661, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: seating_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: 586a87ee73f888745b122df5d1df5537, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: walls_combinedTexture_bake copy
+    second: {fileID: 2800000, guid: d2449af87036d8848955cdca09f0c77b, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
