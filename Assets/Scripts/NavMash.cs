@@ -13,10 +13,14 @@ public class NavMash : MonoBehaviour
     private Vector3 targetPosition;
     private float distance;
     public float stopDistance = 5f; // Karakterin duracağı mesafe
+    public ParticleSystem particleSystem;
+    private int time;
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        distance = Vector3.Distance(transform.position, targetPosition);
+
     }
 
     void Start()
@@ -28,15 +32,24 @@ public class NavMash : MonoBehaviour
     void Update()
     {
         distance = Vector3.Distance(transform.position, targetPosition);
+
         navMeshAgent.SetDestination(target.position);
-        Debug.Log(distance);
+        Debug.Log(particleSystem.isPlaying);
+        
+        
         if (distance>stopDistance)
         {
+
             animator.SetBool("isRunning", true);
+            animator.SetBool("isKneeling", false);
+
         }
         else
         {
             animator.SetBool("isRunning", false);
+            animator.SetBool("isKneeling",true);
+            Debug.Log("oturma animasyonu çalıştı.");
         }
     }
+
 }
