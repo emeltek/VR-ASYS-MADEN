@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
-using TriangleNet;
+
 using UnityEngine;
 
 public class DropRocks : MonoBehaviour

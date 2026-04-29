@@ -29,6 +29,15 @@ TagManager:
   - QDSUITextInputField
   - SamplesInfoPanel
   - QDSUIToggleCheckboxRadio
+  - Mask
+  - Boot
+  - Goggles
+  - Glove
+  - RightGlove
+  - LeftGlove
+  - Vest
+  - Door
+  - Helmet
   layers:
   - Default
   - TransparentFX
