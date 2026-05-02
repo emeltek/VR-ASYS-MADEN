@@ -13,7 +13,7 @@ public class TakeEquipment : MonoBehaviour
     private static bool isWearVest = false;
 
     private GameObject door;
-    private bool isDoorAnimating = false;
+    static private bool isDoorAnimating = false;
 
     public string objectTag;
     private AudioSource warningAudio;

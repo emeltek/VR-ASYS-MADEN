@@ -8,6 +8,7 @@ public class MiningSequence : MonoBehaviour
     public GameObject rockObject;
     public AudioSource shakeStartAudio;
     public AudioSource shakeEndAudio;
+    public AudioSource dropRockAudio;
     public SmokeSpawner smokeSpawner;
 
     public void StartMining()
@@ -34,7 +35,9 @@ public class MiningSequence : MonoBehaviour
         // Sarsıntı başlangıç sesi
         if (shakeStartAudio != null)
             shakeStartAudio.Play();
-
+        
+        if (dropRockAudio != null)
+            dropRockAudio.Play();
 
         yield return new WaitForSeconds(2.5f);
 

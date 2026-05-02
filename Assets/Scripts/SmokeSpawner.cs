@@ -36,14 +36,25 @@ public class SmokeSpawner : MonoBehaviour
     private IEnumerator SpawnRoutine()
     {
         float step = startX > endX ? -Mathf.Abs(stepX) : Mathf.Abs(stepX);
+        ParticleSystem lastPS = null;
 
         for (float x = startX; startX < endX ? x <= endX : x >= endX; x += step)
         {
             Vector3 spawnPos = new Vector3(x, fixedY, fixedZ);
             ParticleSystem ps = Instantiate(particlePrefab, spawnPos, Quaternion.identity);
             spawnedSystems.Add(ps);
+            lastPS = ps;
 
             yield return new WaitForSeconds(spawnInterval);
+        }
+
+        // Son particle sisteminin bitmesini bekle
+        if (lastPS != null)
+        {
+            while (lastPS.IsAlive(true))
+            {
+                yield return null;
+            }
         }
 
         onAllSmokesSpawned?.Invoke();
