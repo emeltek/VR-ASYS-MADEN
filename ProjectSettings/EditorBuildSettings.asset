@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Underworld/Demo/MainScene.unity
+    path: Assets/Scenes/VR-ASYS-MADEN-EGITIM.unity
     guid: b72b85610097c6843a6608af47b8dc25
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b75223203baac5f4cbe9019b92163f4f, type: 2}
