@@ -4,6 +4,7 @@ using UnityEngine;
 public class MiningSequence : MonoBehaviour
 {
     public static bool isMiningStarted = false;
+    public static bool isEducationSceneFinish;
 
     public GameObject rockObject;
     public AudioSource shakeStartAudio;
@@ -22,8 +23,12 @@ public class MiningSequence : MonoBehaviour
 
     private void OnSmokesFinished()
     {
+        MiningSequence.isMiningStarted = false;
         if (shakeEndAudio != null)
+        {
             shakeEndAudio.Play();
+            isEducationSceneFinish = true;
+        }
         
     }
 

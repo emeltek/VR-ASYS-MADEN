@@ -4,6 +4,8 @@ using DG.Tweening;
 
 public class TakeEquipment : MonoBehaviour
 {
+   [SerializeField]
+   public MiningSequence miningSequence;
     private static bool isWearMask = false;
     private static bool isWearLeftGlove = false;
     private static bool isWearRightGlove = false;
@@ -17,12 +19,16 @@ public class TakeEquipment : MonoBehaviour
 
     public string objectTag;
     private AudioSource warningAudio;
+    private AudioSource nextSceneAudio;
+    
 
     void Start()
-    {
-        door = GameObject.Find("door_locker");
-        door.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
-        warningAudio = door.GetComponent<AudioSource>();
+    {   door = GameObject.Find("door_locker");
+        door.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+    
+        AudioSource[] sources = door.GetComponents<AudioSource>();
+        warningAudio = sources[0];
+        nextSceneAudio = sources[1];
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,6 +81,11 @@ public class TakeEquipment : MonoBehaviour
             {
                 if (warningAudio != null)
                     warningAudio.Play();
+            }
+
+            if (isDoorAnimating == true && MiningSequence.isEducationSceneFinish == true)
+            {
+                nextSceneAudio.Play();
             }
         }
     }
