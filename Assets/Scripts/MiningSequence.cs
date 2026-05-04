@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Oculus.Interaction.Locomotion.Editor.Generated;
 using UnityEngine;
 
 public class MiningSequence : MonoBehaviour

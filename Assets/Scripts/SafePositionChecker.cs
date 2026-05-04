@@ -11,16 +11,19 @@ public class SafePositionChecker : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!MiningSequence.isMiningStarted) return;
+       // if (!MiningSequence.isMiningStarted) return;
 
-        if (other.CompareTag("LeftHand"))
+        if (other.CompareTag("LeftGlove"))
         {
+            Debug.Log("sol el girdi.");
+
             isLeftHandInside = true;
             CheckBothHands();
         }
 
-        if (other.CompareTag("RightHand"))
+        if (other.CompareTag("RightGlove"))
         {
+            Debug.Log("Sağ el girdi.");
             isRightHandInside = true;
             CheckBothHands();
         }
@@ -28,23 +31,25 @@ public class SafePositionChecker : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!MiningSequence.isMiningStarted) return;
+        //if (!MiningSequence.isMiningStarted) return;
     
-        if (other.CompareTag("LeftHand"))
+        if (other.CompareTag("LeftGlove"))
             isLeftHandInside = false;
 
-        if (other.CompareTag("RightHand"))
+        if (other.CompareTag("RightGlove"))
             isRightHandInside = false;
     }
     private void CheckBothHands()
     {
         if (!isLeftHandInside || !isRightHandInside) return;
-        if (!ScoreManager.Instance.IsInSafeZone) return;
+        //if (!ScoreManager.Instance.IsInSafeZone) return;
+        if (!SafeZone.isPlayerInSafeZone) return;
 
         string sceneName = SceneManager.GetActiveScene().name;
 
         if (sceneName == "VR-ASYS-MADEN-EGITIM")
         {
+            Debug.Log("iki  el girdi.");
             if (safePositionAudio != null)
                 safePositionAudio.Play();
         }
