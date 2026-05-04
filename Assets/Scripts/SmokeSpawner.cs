@@ -30,6 +30,8 @@ public class SmokeSpawner : MonoBehaviour
     public void SpawnSmoke()
     {
         ClearSmoke();
+        particlePrefab.playOnAwake = true;
+
         StartCoroutine(SpawnRoutine());
     }
 

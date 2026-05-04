@@ -28,13 +28,14 @@ public class SafePositionChecker : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (!MiningSequence.isMiningStarted) return;
+    
         if (other.CompareTag("LeftHand"))
             isLeftHandInside = false;
 
         if (other.CompareTag("RightHand"))
             isRightHandInside = false;
     }
-
     private void CheckBothHands()
     {
         if (!isLeftHandInside || !isRightHandInside) return;
