@@ -4,8 +4,7 @@ using DG.Tweening;
 
 public class TakeEquipment : MonoBehaviour
 {
-   [SerializeField]
-   public MiningSequence miningSequence;
+ 
     private static bool isWearMask = false;
     private static bool isWearLeftGlove = false;
     private static bool isWearRightGlove = false;
@@ -17,6 +16,7 @@ public class TakeEquipment : MonoBehaviour
     private GameObject door;
     static private bool isDoorAnimating = false;
 
+    private GameObject menuUILast;
     public string objectTag;
     private AudioSource warningAudio;
     private AudioSource nextSceneAudio;
@@ -29,6 +29,8 @@ public class TakeEquipment : MonoBehaviour
         AudioSource[] sources = door.GetComponents<AudioSource>();
         warningAudio = sources[0];
         nextSceneAudio = sources[1];
+        menuUILast = GameObject.Find("MenuUILast");
+        menuUILast.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,42 +39,55 @@ public class TakeEquipment : MonoBehaviour
         {
             isWearMask = true;
             other.gameObject.SetActive(false);
+            ScoreManager.Instance.AddEquipmentScore("Mask");
             AllEquipmentsWear();
         }
         if (other.CompareTag("LeftGlove") && objectTag == "LeftGlove")
         {
             isWearLeftGlove = true;
             other.gameObject.SetActive(false);
+            ScoreManager.Instance.AddEquipmentScore("LeftGlove");
+
             AllEquipmentsWear();
         }
         if (other.CompareTag("RightGlove") && objectTag == "RightGlove")
         {
             isWearRightGlove = true;
             other.gameObject.SetActive(false);
+            ScoreManager.Instance.AddEquipmentScore("RightGlove");
+
             AllEquipmentsWear();
         }
         if (other.CompareTag("Goggles") && objectTag == "Goggles")
         {
             isWearGoggles = true;
             other.gameObject.SetActive(false);
+            ScoreManager.Instance.AddEquipmentScore("Goggles");
+
             AllEquipmentsWear();
         }
         if (other.CompareTag("Boot") && objectTag == "Boot")
         {
             isWearBoots = true;
             other.gameObject.SetActive(false);
+            ScoreManager.Instance.AddEquipmentScore("Boot");
+
             AllEquipmentsWear();
         }
         if (other.CompareTag("Helmet") && objectTag == "Helmet")
         {
             isWearHelmet = true;
             other.gameObject.SetActive(false);
+            ScoreManager.Instance.AddEquipmentScore("Helmet");
+
             AllEquipmentsWear();
         }
         if (other.CompareTag("Vest") && objectTag == "Vest")
         {
             isWearVest = true;
             other.gameObject.SetActive(false);
+            ScoreManager.Instance.AddEquipmentScore("Vest");
+
             AllEquipmentsWear();
         }
         if (other.CompareTag("Door") && objectTag == "Door")
@@ -86,6 +101,7 @@ public class TakeEquipment : MonoBehaviour
             if (isDoorAnimating == true && MiningSequence.isEducationSceneFinish == true)
             {
                 nextSceneAudio.Play();
+                menuUILast.SetActive(true);
             }
         }
     }

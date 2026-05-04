@@ -24,12 +24,16 @@ public class MiningSequence : MonoBehaviour
     private void OnSmokesFinished()
     {
         MiningSequence.isMiningStarted = false;
+        ScoreManager.Instance.FinalizeSafeZoneScore();
+
+        if (rockObject != null)
+            rockObject.SetActive(true);
+
         if (shakeEndAudio != null)
         {
             shakeEndAudio.Play();
             isEducationSceneFinish = true;
         }
-        
     }
 
     private IEnumerator MiningRoutine()
