@@ -1,12 +1,17 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MiningSequence : MonoBehaviour
 {
     public static bool isMiningStarted = false;
     public static bool isEducationSceneFinish;
-
+    private string sceneName;
+    
+    public GameObject startButton;
+    
+    public GameObject scoreText;
     public GameObject rockObject;
     public AudioSource shakeStartAudio;
     public AudioSource shakeEndAudio;
@@ -14,9 +19,14 @@ public class MiningSequence : MonoBehaviour
     public SmokeSpawner smokeSpawner;
     public GameObject lastMenuUI;
     public GameObject infoText;
+    public static bool isButtonPressed;
+
+    
 
     public void StartMining()
     {
+        startButton.SetActive(false);
+        isButtonPressed = true;
         StartCoroutine(MiningRoutine());
         
     }
@@ -27,21 +37,35 @@ public class MiningSequence : MonoBehaviour
 
     private void Start()
     {
+        sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName != "VR-ASYS-MADEN-EGITIM")
+        {
+          
+            scoreText.SetActive(false);
+        }
         lastMenuUI.SetActive(false);
     }
 
     private void OnSmokesFinished()
     {
         MiningSequence.isMiningStarted = false;
-        //ScoreManager.Instance.FinalizeSafeZoneScore();
+        ScoreManager.Instance.FinalizeSafeZoneScore();
+        ScoreManager.Instance.StartOptimalTimer(); // smoke bitince timer başlar
         
         if (shakeEndAudio != null)
         {
-            shakeEndAudio.Play();
+            if (sceneName == "VR-ASYS-MADEN-EGITIM")
+            {
+                shakeEndAudio.Play();
+            }
+            
             isEducationSceneFinish = true;
             lastMenuUI.SetActive(true);
+            scoreText.SetActive(true);
         }
+        
     }
+   
 
     private IEnumerator MiningRoutine()
     {

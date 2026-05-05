@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VR-ASYS-MADEN-EGITIM.unity
     guid: b72b85610097c6843a6608af47b8dc25
+  - enabled: 1
+    path: Assets/Scenes/VR-ASYS-MADEN-SINAV.unity
+    guid: 7ac75233978711b4c85957c4f60b68d3
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b75223203baac5f4cbe9019b92163f4f, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: f1e031409b9dfec4da0992cb526e9e00, type: 2}

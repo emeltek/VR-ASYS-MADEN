@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
     private float totalScore = 0f;
 
-    // ─── EKİPMAN (toplam 40) ───────────────────────────────
+    // ─── EKİPMAN (toplam 40) ─────────────────────────────── doğru
     private bool helmetScored = false;
     private bool maskScored = false;
     private bool gogglesScored = false;
@@ -16,19 +17,16 @@ public class ScoreManager : MonoBehaviour
     private bool leftGloveScored = false;
     private bool rightGloveScored = false;
     private const float scorePerEquipment = 40f / 7f;
+    // ─── Güvenli Bölge (toplam 40) ───────────────────── 
 
     private bool isInAnySafeZone = false;
     private float safeZoneScore = 0f;
-    private const float maxSafeZoneScore = 20f;
+    private const float maxSafeZoneScore = 40f;
     private bool safeZoneEnterScored = false;
     private bool safePositionScored = false;
     private bool safeZoneFinalized = false;
 
-    // ─── KONTROLLÜ HAREKET (toplam 20) ─────────────────────
-    private float controlledMovementScore = 0f;
-    private const float maxControlledMovementScore = 20f;
-    private const float scorePerControlZone = 20f / 3f;
-    private Dictionary<int, bool> controlZoneScored = new Dictionary<int, bool>();
+
 
     // ─── OPTİMAL SÜRE (toplam 20) ──────────────────────────
     private bool optimalTimeStarted = false;
@@ -38,6 +36,9 @@ public class ScoreManager : MonoBehaviour
     private float penaltyTimer = 0f;
     private bool isInOptimalZone = false;
     private bool optimalTimeScored = false;
+    
+    //score text 
+    public TextMeshProUGUI scoreText;
     public bool IsInSafeZone => isInAnySafeZone;
     void Awake()
     {
@@ -47,29 +48,9 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        if (optimalTimeStarted && !optimalTimeScored)
-        {
-            optimalTimeElapsed += Time.deltaTime;
+        if (!optimalTimeStarted || optimalTimeScored) return;
 
-            if (isInOptimalZone)
-            {
-                if (optimalTimeElapsed >= optimalTimeDuration)
-                    FinalizeOptimalScore();
-            }
-            else
-            {
-                penaltyTimer += Time.deltaTime;
-                if (penaltyTimer >= 3f)
-                {
-                    penaltyTimer = 0f;
-                    optimalTimeScore = Mathf.Max(0f, optimalTimeScore - 5f);
-                    Debug.Log("Optimal süre cezası! Kalan puan: " + optimalTimeScore);
-
-                    if (optimalTimeScore <= 0f)
-                        FinalizeOptimalScore();
-                }
-            }
-        }
+        optimalTimeElapsed += Time.deltaTime;
     }
 
     // ─── EKİPMAN ───────────────────────────────────────────
@@ -90,9 +71,10 @@ public class ScoreManager : MonoBehaviour
 
         totalScore += scorePerEquipment;
         Debug.Log(equipmentName + " giyildi: +" + scorePerEquipment.ToString("F1") + " | Toplam: " + totalScore.ToString("F1"));
+        GetScoreText(); // totalScore güncellendikten sonra çağır
     }
-
-    public void EnterSafeZone()
+    // ─── Güvenli Bölge (toplam 40) ─────────────────────
+    public void EnterSafeZone(bool hasExitedOnce)
     {
         if (safeZoneFinalized) return;
         isInAnySafeZone = true;
@@ -100,8 +82,10 @@ public class ScoreManager : MonoBehaviour
         if (!safeZoneEnterScored)
         {
             safeZoneEnterScored = true;
-            safeZoneScore += 10f;
-            Debug.Log("Safe zone'a girildi: +10 | Safe zone puanı: " + safeZoneScore);
+            safeZoneScore += 20f;
+            Debug.Log("Safe zone'a girildi: +20 | Safe zone puanı: " + safeZoneScore);
+            GetScoreText();
+
         }
     }
 
@@ -110,6 +94,8 @@ public class ScoreManager : MonoBehaviour
         if (safeZoneFinalized) return;
         isInAnySafeZone = false;
         Debug.Log("Safe zone'dan çıkıldı! Ceza başlıyor.");
+        GetScoreText();
+
     }
 
     public void PenalizeSafeZone()
@@ -119,6 +105,8 @@ public class ScoreManager : MonoBehaviour
 
         safeZoneScore = Mathf.Max(0f, safeZoneScore - 5f);
         Debug.Log("Safe zone cezası! Kalan puan: " + safeZoneScore);
+        GetScoreText();
+
     }
 
     public void AddSafePositionScore()
@@ -127,8 +115,10 @@ public class ScoreManager : MonoBehaviour
         if (safePositionScored) return;
 
         safePositionScored = true;
-        safeZoneScore = Mathf.Min(maxSafeZoneScore, safeZoneScore + 10f);
-        Debug.Log("Çök & tut yapıldı: +10 | Safe zone puanı: " + safeZoneScore);
+        safeZoneScore = Mathf.Min(maxSafeZoneScore, safeZoneScore + 20f);
+        Debug.Log("Çök & tut yapıldı: +20 | Safe zone puanı: " + safeZoneScore);
+        GetScoreText();
+
     }
 
     public void FinalizeSafeZoneScore()
@@ -137,19 +127,8 @@ public class ScoreManager : MonoBehaviour
         safeZoneFinalized = true;
         totalScore += safeZoneScore;
         Debug.Log("Safe zone tamamlandı: +" + safeZoneScore + " | Toplam: " + totalScore.ToString("F1"));
-    }
-    // ─── KONTROLLÜ HAREKET ─────────────────────────────────
+        GetScoreText();
 
-    public void AddControlZoneScore(int zoneId)
-    {
-        if (controlZoneScored.ContainsKey(zoneId)) return;
-        if (controlledMovementScore >= maxControlledMovementScore) return;
-
-        controlZoneScored[zoneId] = true;
-        float earned = Mathf.Min(scorePerControlZone, maxControlledMovementScore - controlledMovementScore);
-        controlledMovementScore += earned;
-        totalScore += earned;
-        Debug.Log("Kontrol Zone " + zoneId + ": +" + earned.ToString("F1") + " | Toplam: " + totalScore.ToString("F1"));
     }
 
     // ─── OPTİMAL SÜRE ──────────────────────────────────────
@@ -163,21 +142,44 @@ public class ScoreManager : MonoBehaviour
 
     public void EnterOptimalZone()
     {
+        if (optimalTimeScored) return;
         isInOptimalZone = true;
-        penaltyTimer = 0f;
+        FinalizeOptimalScore();
     }
 
-    public void ExitOptimalZone()
-    {
-        isInOptimalZone = false;
-        penaltyTimer = 0f;
-    }
+ 
 
     private void FinalizeOptimalScore()
     {
+        Debug.Log("finalaze optimal score");
+        if (optimalTimeScored) return;
         optimalTimeScored = true;
+
+        if (optimalTimeElapsed <= optimalTimeDuration)
+        {
+            // Zamanında girdi, tam puan
+            optimalTimeScore = 20f;
+        }
+        else
+        {
+            // Geç girdi, her 3 saniye -5
+            float extraTime = optimalTimeElapsed - optimalTimeDuration;
+            int penalties = Mathf.FloorToInt(extraTime / 3f);
+            optimalTimeScore = Mathf.Max(0f, 20f - (penalties * 5f));
+        }
+
         totalScore += optimalTimeScore;
-        Debug.Log("Optimal süre tamamlandı: +" + optimalTimeScore.ToString("F1") + " | Toplam: " + totalScore.ToString("F1"));
+        Debug.Log("Optimal süre: " + optimalTimeElapsed.ToString("F1") + "sn | Puan: +" + optimalTimeScore + " | Toplam: " + totalScore.ToString("F1"));
+        GetScoreText();
+    }
+    public void ZeroOptimalScore()
+    {
+        Debug.Log("zero optimal score girildi");
+
+        if (optimalTimeScored) return;
+        optimalTimeScored = true;
+        optimalTimeScore = 0f;
+        Debug.Log("Maden çökerken girildi! Optimal süre puanı: 0");
     }
 
     // ─── TOPLAM PUAN ───────────────────────────────────────
@@ -185,5 +187,11 @@ public class ScoreManager : MonoBehaviour
     public float GetTotalScore()
     {
         return totalScore;
+
+    }
+
+    public void GetScoreText()
+    {
+        scoreText.text = "Puan: " + totalScore.ToString("F1");
     }
 }

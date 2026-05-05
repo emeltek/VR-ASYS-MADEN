@@ -11,7 +11,7 @@ public class SafePositionChecker : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-       // if (!MiningSequence.isMiningStarted) return;
+       if (!MiningSequence.isMiningStarted) return;
 
         if (other.CompareTag("LeftGlove"))
         {
@@ -31,7 +31,7 @@ public class SafePositionChecker : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        //if (!MiningSequence.isMiningStarted) return;
+        if (!MiningSequence.isMiningStarted) return;
     
         if (other.CompareTag("LeftGlove"))
             isLeftHandInside = false;
@@ -42,7 +42,7 @@ public class SafePositionChecker : MonoBehaviour
     private void CheckBothHands()
     {
         if (!isLeftHandInside || !isRightHandInside) return;
-        //if (!ScoreManager.Instance.IsInSafeZone) return;
+        if (!ScoreManager.Instance.IsInSafeZone) return;
         if (!SafeZone.isPlayerInSafeZone) return;
 
         string sceneName = SceneManager.GetActiveScene().name;

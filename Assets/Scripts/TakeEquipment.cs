@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class TakeEquipment : MonoBehaviour
 {
@@ -21,11 +22,22 @@ public class TakeEquipment : MonoBehaviour
     private AudioSource warningAudio;
     private AudioSource nextSceneAudio;
     private AudioSource wearEquipmentAudio;
-
+    private string sceneName;
 
     void Start()
-    {   door = GameObject.Find("door_locker");
-        door.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
+    {   
+        sceneName = SceneManager.GetActiveScene().name;
+        door = GameObject.Find("door_locker");
+        if (sceneName == "VR-ASYS-MADEN-EGITIM")
+        {
+           
+            door.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
+        }
+        else
+        {
+            door.transform.DORotate(new Vector3(-90f, 0f, -90f), 1f)
+                .SetEase(Ease.InOutQuad);
+        }
     
         AudioSource[] sources = door.GetComponents<AudioSource>();
         warningAudio = sources[0];
@@ -41,7 +53,7 @@ public class TakeEquipment : MonoBehaviour
             isWearMask = true;
             other.gameObject.SetActive(false);
             wearEquipmentAudio.Play();
-            //ScoreManager.Instance.AddEquipmentScore("Mask");
+            ScoreManager.Instance.AddEquipmentScore("Mask");
             AllEquipmentsWear();
         }
         if (other.CompareTag("LeftGlove") && objectTag == "LeftGlove")
@@ -50,7 +62,7 @@ public class TakeEquipment : MonoBehaviour
             other.gameObject.SetActive(false);
             wearEquipmentAudio.Play();
 
-            //ScoreManager.Instance.AddEquipmentScore("LeftGlove");
+            ScoreManager.Instance.AddEquipmentScore("LeftGlove");
 
             AllEquipmentsWear();
         }
@@ -59,7 +71,7 @@ public class TakeEquipment : MonoBehaviour
             isWearRightGlove = true;
             other.gameObject.SetActive(false);
             wearEquipmentAudio.Play();
-            // ScoreManager.Instance.AddEquipmentScore("RightGlove");
+            ScoreManager.Instance.AddEquipmentScore("RightGlove");
 
             AllEquipmentsWear();
         }
@@ -68,7 +80,7 @@ public class TakeEquipment : MonoBehaviour
             isWearGoggles = true;
             other.gameObject.SetActive(false);
             wearEquipmentAudio.Play();
-            //ScoreManager.Instance.AddEquipmentScore("Goggles");
+            ScoreManager.Instance.AddEquipmentScore("Goggles");
 
             AllEquipmentsWear();
         }
@@ -77,7 +89,7 @@ public class TakeEquipment : MonoBehaviour
             isWearBoots = true;
             other.gameObject.SetActive(false);
             wearEquipmentAudio.Play();
-            // ScoreManager.Instance.AddEquipmentScore("Boot");
+            ScoreManager.Instance.AddEquipmentScore("Boot");
 
             AllEquipmentsWear();
         }
@@ -86,7 +98,7 @@ public class TakeEquipment : MonoBehaviour
             isWearHelmet = true;
             other.gameObject.SetActive(false);
             wearEquipmentAudio.Play();
-            //ScoreManager.Instance.AddEquipmentScore("Helmet");
+            ScoreManager.Instance.AddEquipmentScore("Helmet");
 
             AllEquipmentsWear();
         }
@@ -95,22 +107,21 @@ public class TakeEquipment : MonoBehaviour
             isWearVest = true;
             other.gameObject.SetActive(false);
             wearEquipmentAudio.Play();
-            //ScoreManager.Instance.AddEquipmentScore("Vest");
+            ScoreManager.Instance.AddEquipmentScore("Vest");
 
             AllEquipmentsWear();
         }
         if (other.CompareTag("Door") && objectTag == "Door")
         {
-            if (!isDoorAnimating)
+            if (!isDoorAnimating && sceneName == "VR-ASYS-MADEN-EGITIM")
             {
                 if (warningAudio != null)
                     warningAudio.Play();
             }
 
-            if (isDoorAnimating == true && MiningSequence.isEducationSceneFinish == true)
+            if (isDoorAnimating == true && MiningSequence.isEducationSceneFinish == true && sceneName =="VR-ASYS-MADEN-EGITIM")
             {
                 nextSceneAudio.Play();
-                
             }
         }
     }
