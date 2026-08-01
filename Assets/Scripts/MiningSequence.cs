@@ -20,13 +20,14 @@ public class MiningSequence : MonoBehaviour
     public GameObject lastMenuUI;
     public GameObject infoText;
     public static bool isButtonPressed;
-
+    public GameObject equipments;
     
 
     public void StartMining()
     {
         startButton.SetActive(false);
         isButtonPressed = true;
+        equipments.SetActive(false);
         StartCoroutine(MiningRoutine());
         
     }
@@ -71,10 +72,14 @@ public class MiningSequence : MonoBehaviour
     {
         isMiningStarted = true;
         infoText.SetActive(false);
-   
-        // Sarsıntı başlangıç sesi
-        if (shakeStartAudio != null)
-            shakeStartAudio.Play();
+        if (sceneName == "VR-ASYS-MADEN-EGITIM")
+        {
+            // Sarsıntı başlangıç sesi
+            if (shakeStartAudio != null)
+                shakeStartAudio.Play();
+
+        }
+       
         yield return new WaitForSeconds(4f);
 
         // Smoke particle başla

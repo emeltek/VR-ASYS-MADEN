@@ -6,7 +6,7 @@ public class SafePositionChecker : MonoBehaviour
     private bool isLeftHandInside = false;
     private bool isRightHandInside = false;
     private bool scoreGiven = false;
-
+    private bool isAudioPlayed = false;
     public AudioSource safePositionAudio;
 
     private void OnTriggerEnter(Collider other)
@@ -50,8 +50,12 @@ public class SafePositionChecker : MonoBehaviour
         if (sceneName == "VR-ASYS-MADEN-EGITIM")
         {
             Debug.Log("iki  el girdi.");
-            if (safePositionAudio != null)
-                safePositionAudio.Play();
+            if (safePositionAudio != null && isAudioPlayed == false)
+            {
+                isAudioPlayed = true;
+                safePositionAudio.Play();  
+            }
+            
         }
         else
         {

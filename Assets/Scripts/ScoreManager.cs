@@ -82,10 +82,10 @@ public class ScoreManager : MonoBehaviour
         if (!safeZoneEnterScored)
         {
             safeZoneEnterScored = true;
-            safeZoneScore += 20f;
-            Debug.Log("Safe zone'a girildi: +20 | Safe zone puanı: " + safeZoneScore);
+            float earned = hasExitedOnce ? 10f : 20f;
+            safeZoneScore += earned;
+            Debug.Log("Safe zone'a girildi: +" + earned + " | Safe zone puanı: " + safeZoneScore);
             GetScoreText();
-
         }
     }
 

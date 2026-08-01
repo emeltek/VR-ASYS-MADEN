@@ -53,9 +53,13 @@ public class SafeZone : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         if (!MiningSequence.isMiningStarted) return;
 
-        hasExitedOnce = true;
+        playerInside = false;
         isPlayerInSafeZone = false;
         penaltyTimer = 0f;
+
+        if (MiningSequence.isMiningStarted) // sadece çökme sırasında çıkarsa flag set et
+            hasExitedOnce = true;
+
         ScoreManager.Instance.ExitSafeZone();
     }
 }
