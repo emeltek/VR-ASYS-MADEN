@@ -17,6 +17,14 @@ public class TakeEquipment : MonoBehaviour
     private GameObject door;
     static private bool isDoorAnimating = false;
 
+    /// <summary>Statik ekipman durumları sahne değişince sıfırlanmaz (eğitimden sınava taşınıyordu).</summary>
+    public static void ResetState()
+    {
+        isWearMask = isWearLeftGlove = isWearRightGlove = isWearGoggles = false;
+        isWearBoots = isWearHelmet = isWearVest = false;
+        isDoorAnimating = false;
+    }
+
     private GameObject menuUILast;
     public string objectTag;
     private AudioSource warningAudio;

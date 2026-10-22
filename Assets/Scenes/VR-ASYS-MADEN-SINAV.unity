@@ -2770,6 +2770,119 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 73694216}
   m_Mesh: {fileID: 4300000, guid: 7ace0e81060cea544bbaca67cf4c2a11, type: 3}
+--- !u!1 &74418735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 74418738}
+  - component: {fileID: 74418737}
+  - component: {fileID: 74418736}
+  m_Layer: 0
+  m_Name: GNN
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &74418736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74418735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24cd7d1f6b28749dbafc622e29aad3d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  riskPredictor: {fileID: 0}
+  trackedTarget: {fileID: 0}
+  startingScore: 100
+  missingPpePenalty: 30
+  missingPpeMultiplier: 1.5
+  exposedBudget: 30
+  exposedTimeConstant: 10
+  dangerBudget: 40
+  entryShare: 0.4
+  dangerTimeConstant: 5
+  noPosturePenalty: 20
+  evacuationBudget: 20
+  evacuationGracePeriod: -1
+  evacuationTimeConstant: 15
+  evacuationTimeout: 60
+  updateInterval: 0.5
+  showDebugLogs: 1
+--- !u!114 &74418737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74418735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49571e04dc4b2467b9ded482b6bba589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weightsJson: {fileID: 0}
+  graphJson: {fileID: 0}
+  siteArea: {fileID: 0}
+  rockGroups: []
+  graphSettings:
+    worldScale: 1.75
+    cellSize: 0.5
+    siteMargin: 10
+    dangerMargin: 2
+    hazardProbeDistance: 15
+    postProbeDistance: 3
+    postShelterRadius: 0.6
+    minComponentSize: 10
+    clearanceProbeDistance: 3
+    overheadProbeDistance: 5
+    clearanceRadius: 0.1
+    stepOverHeight: 0.5
+    headroomHeight: 1.2
+    floorBand: 1
+    maxSlope: 40
+    maxStep: 0.5
+    supportKeywords:
+    - wood_el
+    - timber
+    - support
+    - destek
+    - beam
+    extraSupportNames: []
+    rockKeywords:
+    - rock
+    - stone
+    - kaya
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    gridOffset: {x: 0, y: 0}
+  drawGizmos: 1
+  gizmoShowsDecision: 1
+  showDebugLogs: 1
+--- !u!4 &74418738
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74418735}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -80.13747, y: 6.1864314, z: -18.897245}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &82753625
 GameObject:
   m_ObjectHideFlags: 0
@@ -308906,7 +309019,6 @@ GameObject:
   - component: {fileID: 1277321475}
   - component: {fileID: 1277321477}
   - component: {fileID: 1277321476}
-  - component: {fileID: 1277321478}
   m_Layer: 6
   m_Name: 02_2
   m_TagString: Untagged
@@ -308979,18 +309091,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277321474}
   m_Mesh: {fileID: -5540745745588522871, guid: f00140d87bd839346b9e2cd84d272ca9, type: 3}
---- !u!114 &1277321478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1277321474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 354796a62b58f8b4fb2136119c3f3602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1278417046
 GameObject:
   m_ObjectHideFlags: 0
@@ -425027,6 +425127,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optimalTimeDuration: 12
+  guvenliEsigi: 75
+  ortaRiskEsigi: 50
+  riskliEsigi: 25
   scoreText: {fileID: 540902008975776097}
 --- !u!1 &1825823603
 GameObject:
@@ -707938,3 +708041,4 @@ SceneRoots:
   - {fileID: 2117938880}
   - {fileID: 1825229869}
   - {fileID: 1281526609}
+  - {fileID: 74418738}

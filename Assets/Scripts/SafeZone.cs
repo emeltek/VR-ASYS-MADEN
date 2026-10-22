@@ -2,64 +2,46 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Ahşap destek direğinin yanındaki güvenli bölge. Sahnede çok sayıda olduğu için doluluk ortak bir
+/// sayaçla tutulur: bir bölgeden komşu bölgeye geçerken oyuncu "dışarıda" sayılmaz. Bölge dışı cezası
+/// her bölgede ayrı ayrı değil, ScoreManager'da tek yerden işler.
+/// </summary>
 public class SafeZone : MonoBehaviour
 {
-    private static bool playerInside = false;
-    private float penaltyTimer = 0f;
-    private const float penaltyInterval = 3f;
-    private AudioSource audioSource;
-    public static bool isPlayerInSafeZone = false;
-    private AudioSource correctSound;
-    private string sceneName;
-    private bool hasExitedOnce = false;
+    private static int insideCount;
 
-    private void Start()
+    /// <summary>Oyuncu herhangi bir güvenli bölgenin içinde mi.</summary>
+    public static bool IsPlayerInside => insideCount > 0;
+    public static bool isPlayerInSafeZone => IsPlayerInside;
+    /// <summary>Göçük sırasında en az bir kez güvenli bölgeden çıkıldı mı.</summary>
+    public static bool HasExitedDuringMining { get; private set; }
+
+    public static void ResetState()
     {
-        sceneName = SceneManager.GetActiveScene().name;
-    }
-
-    void Update()
-    {
-        if (!MiningSequence.isMiningStarted) return;
-
-        if (playerInside)
-        {
-            // içeride ceza yok
-        }
-        else
-        {
-            penaltyTimer += Time.deltaTime;
-            if (penaltyTimer >= penaltyInterval)
-            {
-                penaltyTimer = 0f;
-                ScoreManager.Instance.PenalizeSafeZone();
-            }
-        }
+        insideCount = 0;
+        HasExitedDuringMining = false;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        
-       if (!other.CompareTag("Player")) return;
-       if (!MiningSequence.isMiningStarted) return;
-        playerInside = true;
-        isPlayerInSafeZone = true;
-        penaltyTimer = 0f; 
-        ScoreManager.Instance.EnterSafeZone(hasExitedOnce);
+        if (!other.CompareTag("Player")) return;
+
+        // Doluluk göçükten önce de izlenir: göçük başladığında zaten içerideki oyuncu dışarıda sayılmasın
+        bool wasInside = IsPlayerInside;
+        insideCount++;
+        if (!wasInside && MiningSequence.isMiningStarted)
+            ScoreManager.Instance.EnterSafeZone(HasExitedDuringMining);
     }
 
     void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        if (!MiningSequence.isMiningStarted) return;
 
-        playerInside = false;
-        isPlayerInSafeZone = false;
-        penaltyTimer = 0f;
+        insideCount = Math.Max(0, insideCount - 1);
+        if (IsPlayerInside || !MiningSequence.isMiningStarted) return;
 
-        if (MiningSequence.isMiningStarted) // sadece çökme sırasında çıkarsa flag set et
-            hasExitedOnce = true;
-
+        HasExitedDuringMining = true; // sadece çökme sırasında çıkarsa
         ScoreManager.Instance.ExitSafeZone();
     }
 }
